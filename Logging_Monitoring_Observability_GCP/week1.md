@@ -76,3 +76,47 @@ Three key log categories are audit logs, agent logs, and network logs.
 
 ## Application Performance Management Tools.
 
+- Debugger.
+- Trace.
+- Profiler.
+
+
+
+![image-20210625220427107](./images/image-20210625220427107.png)
+
+
+
+- Google Cloud's Debugger lets you debug your applications while they are running in production, without stopping them or slowing them down, so you can examine your code's function and performance under actual production conditions. 
+- Easily collaborate with other team members by sharing your debug session. Sharing a debug session is as easy as sending the Console URL.
+- Capture the state of your application in production at a specific line location with snapshots. Use logpoints to inject a new logging statement on-demand at a specific line location. Capture a snapshot or write a logpoint message only when you need it, using a simple conditional expression written in your application's language.
+- Cloud Debugger is easily integrated into existing developer workflows. Launch Debugger and take snapshots directly from Cloud Logging, error reporting, dashboards, IDEs, and the gcloud command-line interface.
+
+
+
+![image-20210625220729964](./images/image-20210625220729964.png)
+
+
+
+- Based on the tools Google uses on its production services, Cloud Trace is a tracing system that collects latency data from your distributed applications and displays it in the Google Cloud Console.
+- Trace can capture traces from applications deployed on App Engine, Compute Engine VMs, and Google Kubernetes Engine containers.
+- Performance insights are provided in near-real time, and Trace automatically analyzes all of your application's traces to generate in-depth latency reports that can surface performance degradations.
+- Trace continuously gathers and analyzes trace data to automatically identify recent changes to your application's performance.
+
+
+
+![image-20210625220940635](./images/image-20210625220940635.png)
+
+
+
+- Poorly performing code increases the latency and cost of applications and web services every day, without anyone knowing or doing anything about it.
+- Cloud Profiler changes this by using statistical techniques and extremely low-impact instrumentation that can run across all production application instances to provide a complete CPU and heap picture of an application without slowing it down.
+- With broad platform support that includes Compute Engine VMs, App Engine, and Google Kubernetes Engine.
+- It allows developers to analyze applications running anywhere, including Google Cloud, other cloud platforms, or onpremises, with support for Java, Go, Python, and Node.js.
+- Cloud Profiler presents the call hierarchy and resource consumption of the relevant function in an interactive flame graph that helps developers understand which paths consume the most resources and the different ways in which their code is actually cPoorly performing code increases the latency and cost of applications and web services every day, without anyone knowing or doing anything about it. Cloud Profiler changes this by using statistical techniques and extremely low-impact instrumentation that can run across all production application instances to provide a complete CPU and heap picture of an application without slowing it down.
+
+
+
+
+
+## Why monitor?
+

@@ -111,7 +111,7 @@ Three key log categories are audit logs, agent logs, and network logs.
 - Poorly performing code increases the latency and cost of applications and web services every day, without anyone knowing or doing anything about it.
 - Cloud Profiler changes this by using statistical techniques and extremely low-impact instrumentation that can run across all production application instances to provide a complete CPU and heap picture of an application without slowing it down.
 - With broad platform support that includes Compute Engine VMs, App Engine, and Google Kubernetes Engine.
-- It allows developers to analyze applications running anywhere, including Google Cloud, other cloud platforms, or onpremises, with support for Java, Go, Python, and Node.js.
+- It allows developers to analyze applications running anywhere, including Google Cloud, other cloud platforms, or on-premises, with support for Java, Go, Python, and Node.js.
 - Cloud Profiler presents the call hierarchy and resource consumption of the relevant function in an interactive flame graph that helps developers understand which paths consume the most resources and the different ways in which their code is actually cPoorly performing code increases the latency and cost of applications and web services every day, without anyone knowing or doing anything about it. Cloud Profiler changes this by using statistical techniques and extremely low-impact instrumentation that can run across all production application instances to provide a complete CPU and heap picture of an application without slowing it down.
 
 
@@ -119,4 +119,47 @@ Three key log categories are audit logs, agent logs, and network logs.
 
 
 ## Why monitor?
+
+- **Monitoring**. Collecting, processing, aggregating, and displaying real-time quantitative data about a system, such as query counts and types, error counts and types, processing times, and server lifetimes. 
+- There are many answers to the "Why monitor?" question. Continued system operations, trend analysis over time, building dashboards, alerting personnel where systems violate predefined SLOs, comparing systems and systems changed, and providing data for improved incident response, are just a few.  (landing.google.com/sre/books/)
+
+![image-20210626105324385](./images/image-20210626105324385.png)
+
+
+
+- **Why do we monitor?**
+  - Because we want that good, reliable, and trusted product we saw on the top of our pyramid.
+  - We want our product to improve continually, and we need the monitoring data to male sure that it does.
+  - We want dashboards to provide business intelligence, so our DevOps personal have the data they need to do their jobs.
+  - We want automated alerts because the huge wall of monitors with someone staring at ir (as is often shown in the movies) is a fallacy.
+  - Humans tend to only look when there's something important for them to look at, so it is better to construct automated systems to prioritize and handle as many alerts as possible.
+
+<img src="./images/image-20210626110609473.png" alt="image-20210626110609473" style="zoom:50%;" />
+
+- **Continual improvement examples:**
+  - Forecasting and trend analysis:
+    - DB capacity and growth rate?
+    - Able to handle the holiday rush?
+    - Handling new international client load?
+  - Testing changes and improvements.
+    - Memorystore improves site performance?
+    - Latest software update affects performance?
+    - How would change X impact capacity?
+  - Data for business, application, and security analysts
+    - Spot evolving customers needs.
+    - How (and where) could software be improved?
+    - Is someone trying to hack the system?
+
+- **Dashboards provide:**
+
+  - Dashboards provide core metric visibility into your cloud resources and services with no configuration.
+  - Define user- or job-targeted custom dashboards and take advantage of Google's powerful data visualization tools.
+  - Dashboards can be combined with automated alerts to help avoid the need to have personnel stare at a huge wall of displays.
+  - Even better, many alert signals could be handled by non-human, automated systems.
+
+- **Alerting**
+
+  ![image-20210626112052407](./images/image-20210626112052407.png)
+
+  - Configure alerting policies to notify you when events occur, or a particular system or custom metrics violate rules that you define.
 

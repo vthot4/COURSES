@@ -163,3 +163,37 @@ Three key log categories are audit logs, agent logs, and network logs.
 
   - Configure alerting policies to notify you when events occur, or a particular system or custom metrics violate rules that you define.
 
+- **Debugging.**
+
+![image-20210626112926467](./images/image-20210626112926467.png)
+
+- After the issue has been fixed or mitigated, a postmortem is created. It should contain documentation for both future DevOps personnel and the client. Included in the documentation, where appropriate, should be a thorough root cause analysis and a list of preventive actions.
+
+
+
+- **Setting expectations.**
+
+![image-20210626113739810](./images/image-20210626113739810.png)
+
+- A word on expectations. Monitoring isn't a job so much as it's a skill that multiple team members need.
+  - There is no single do-it-all tool; that's why this class covers multiple Google Cloud products.
+  - There is no such thing as an infallible system, but there can be SLOs that makes sense, and you can use these to build trust through transparency and quick fixes.
+  - Never forget the KISS—Keep it Simple, Stupid—principle when you're planning and implementing monitoring.
+  - How do you eat an elephant? One bite at a time. The same is true with monitoring. Focus on one system, one service, at a time, and “divide and conquer” your way to success.
+  - It’s easy for monitoring to become too focused..
+  - It’s better to monitor from multiple vantage points.
+  - External monitoring is helpful because it represents the client’s view, but the data it can access is limited.
+  - Testing from inside a service has more access to data and detail, but lacks that client perspective. Use them both!
+
+
+
+- **Symptom vs. cause (what vs. why)**
+
+  ![image-20210626114553943](./images/image-20210626114553943.png)
+
+- **Clear box versus black box.**
+  - Monitoring based on metrics exposed by the internals of the system, including logs, or a custom-coded metric.
+  - Testing externally accessible behavior as a consumer would, through API/Interface.
+
+
+

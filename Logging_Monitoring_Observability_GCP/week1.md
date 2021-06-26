@@ -228,3 +228,90 @@ Three key log categories are audit logs, agent logs, and network logs.
 
 
 
+
+
+## SLIs, SLOs, SLAs
+
+- **Service level indicator (SLIs)**. A quantifiable measure of service reliability.  Ideally, SLIs should have a close linear relationship with your users' experience of that reliability, and we recommend expressing them as the ratio of two numbers: the number of good events divided by the count of all valid events.
+- **Service level objetive (SLO)**. A reliability target for an SLI. 
+
+- **Customers**. Customers are the subset of your users who are paying directly for a service, with real money.
+
+- The most important feature of any system is its **reliability**.
+
+- Note that reliability and availability, while often related, do not mean the same thing.
+
+  - **Availability**. Measures the ability of an application to run when needed, while **reliability** measures the ability of that application to perform its intended function for a specific time without failure.
+
+  ![image-20210626234053452](./images/image-20210626234053452.png)
+
+- SLOs provide different value to different parts of an organization. We've claimed that reliability is the most important feature, but for many product-oriented folks, this brings up a difficult question: When should engineering for increased reliability take priority over that shiny new feature you've been designing for months? If you have an agreed-upon and widely communicated target for service reliability, you can answer that question with objective data.
+
+- So, SLOs provide a common language and shared understanding, anchoring your conversation about service reliability on concrete data. It's tempting to consider SLOs to be a purely operational concern, but for them to function correctly as a signal for prioritization of engineering work, your reliability targets must be set in conjunction with engineering and product teams. Everyone must agree that the target accurately represents the desired experience of your users.
+
+
+
+- **What does "reliable" mean?**
+  - What do we mean by "reliable” in the context of an internet service? Let’s start by talking about what it means for a service to be “working well”—or indeed, just “working”.
+    - What should you be able to do?
+    - What characteristics are important to you?
+    - What are your expectations of how the service should respond?
+
+![image-20210626235024407](./images/image-20210626235024407.png)
+
+- If your service has paying customers, you probably have some way of compensating them with refunds or credits when that service has an outage.
+- Your criteria for compensation are usually written into a service level agreement, which describes the minimum levels of service that you promise to provide and what happens when you break that promise.
+- The problem with SLAs is that you're only incentivized to promise the minimum level of service and compensation that will stop your customers from jumping ship to a competitor. Customers often feel the impact of reliability problems before these promises are breached, when reliability falls far short of the levels of service that keep your customers happy and contributes to a perception that your service is unreliable.
+
+![image-20210626235226666](./images/image-20210626235226666.png)
+
+- To give you the breathing room to detect problems and take remedial action before your reputation is damaged, your alerting thresholds are often substantially higher than the minimum levels of service documented in your SLA. SLOs provide another way of expressing these internal reliability targets.
+- For SLOs to help improve service reliability, all parts of the business must agree that they are an accurate measure of user experience and must also agree to use them as a primary driver for decision making.
+- Your customers probably don't need to be aware of them, but they should have a measurable impact on the priorities of your organization.
+- Being out of SLO must have concrete, well-documented consequences, just like there are consequences for breaching SLAs.
+
+
+
+![image-20210626235822452](./images/image-20210626235822452.png)
+
+
+
+![image-20210626235957354](./images/image-20210626235957354.png)
+
+![image-20210627000235536](./images/image-20210627000235536.png)
+
+- We have a simple rule of thumb for where SLO targets should be, that generalizes the case: a typical user of your service should be just about happy with the service, when it operates at those targets.
+  If the service was any less reliable, you'd no longer be meeting their expectations and they would start to become unhappy.
+  We call this the "happiness test."
+
+  ![image-20210627000816266](./images/image-20210627000816266.png)
+
+- Maybe your users would be happier if you built new features or made other service improvements with the resources you're instead dedicating to far exceeding your reliability targets.
+
+
+
+![image-20210627004751239](./images/image-20210627004751239.png)
+
+- If we're not targeting 100% reliability, then whatever target we do set implicitly allows for a small number of errors to be served to users.
+- If everyone agrees that the SLO target represents the point at which users start to become unhappy with the reliability of the service, we can theoretically serve errors beyond that point without impacting user happiness.
+
+- **Implementation mechanics**. Evaluate SLO performance over a set windows, e.g., 28 days.
+
+![image-20210627005518742](./images/image-20210627005518742.png)
+
+- When you've decided on the time window, count the number of events within that window. Multiplying this by the SLO target yields the absolute minimum number of good events that must be served within the window to meet the SLO, which in turn tells you the allowable number of bad events—the error budget.
+- When you subtract the actual number of bad events, you know how much error budget you have remaining. This is a key signal to feed into your project planning cycle: if you have plenty of budget to spare, you can take more risks and move faster, but if you've already used most of your budget, that's a signal that you need to start prioritizing and fixing those pesky bugs instead of building that cool new stuff. If you are way over budget, your users are unhappy, and you urgently need to start trading feature velocity for reliability work.
+
+
+
+- **Error budgets** can accommodate:
+  - New feature releases.
+  - Expected system changes.
+  - Inevitable failure in hardware, networks, etc.
+  - Planned downtime. If you have to take a service down for essential maintenance, you can pay for it with downtime from your error budget, although if the downtime is communicated far enough in advance, your users should be expecting it and therefore less unhappy about it.
+  - Risky experiments. Lastly, one useful thing to spend small amounts of error budget on is experimentation. The ideal is that your SLO target represents the dividing line between happiness and unhappiness, but how do you know you've drawn the line in the right place? If you have other ways of gauging the happiness of your users, you can design experiments to test this. For example, you can set things up so a small group of users are served exactly at SLO, and observe whether their happiness metrics decline.
+
+
+
+## Choosing a good SLI.
+

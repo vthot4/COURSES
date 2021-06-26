@@ -197,3 +197,34 @@ Three key log categories are audit logs, agent logs, and network logs.
 
 
 
+## Critical measures
+
+- You can't measure everything, so when possible, you want choose metrics that are S.M.A.R.T.
+  - **Specific**. "The 95th percentile of results are returned in under 100ms." Now, that's specific.
+  - **Measurable**. A lot of monitoring is numbers, grouped over time. with math applied. A metric needs to be a number or a delta, something we can measure and place in a mathematical equation.
+  - **Achievable**. "100% availability" might sound good, but it's not possible to obtain, let alone maintain, over an extended window of time.
+  - **Relevant**. Does it matter to the user? Will it help achieve application-related goals? If not, then it's a poor metric.
+  - **Time-bound**. You want a service to be 99% available? That fine. Is that per year? Per month? Per day? If we don't know, how can we measure?
+
+![image-20210626230952460](./images/image-20210626230952460.png)
+
+- A good place to start metrics selection is with one or more of the four golden signal:
+
+  - **Latency.** Latency measures how long it takes a particular part of a system to return a result. It's important because it directly impacts the user experience, because changes in latency could indicate emerging issues, because its values may be tied to capacity demands, and because it may be used to show or measure system improvements.
+
+    ![image-20210626231328204](./images/image-20210626231328204.png)
+
+  - **Traffic.** Traffic measures how many requests are reaching your system. Traffic is important because it is an indicator of current system demand, its historical trends are used for capacity planning, and it is a core measure when calculating infrastructure spend.
+
+    ![image-20210626231527438](./images/image-20210626231527438.png)
+
+  - **Saturation.** Saturation measures how close to capacity a system is, with capacity being a subjective measure depending on the underlying service or application. It's important because it's an indicator of how full the service is, it focuses on the most constrained resources, and it is frequently tied to degrading performance as capacity is reached.
+
+    ![image-20210626231743801](./images/image-20210626231743801.png)
+
+  - **Errors.** Errors measure system failures or issues. They are important because they may indicate that something is failing, they may indicate configuration or capacity issues, they can indicate SLO violations, and an error might mean it's time to send out an alert.
+
+  ![image-20210626231954055](./images/image-20210626231954055.png)
+
+
+

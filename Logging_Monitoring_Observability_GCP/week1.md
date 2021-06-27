@@ -367,3 +367,80 @@ The SLI menu we're showing you here is a good place to start if you're not sure 
 
 ## Developing SLOs and SLIs.
 
+![image-20210627170130210](./images/image-20210627170130210.png)
+
+- The ideal is that your reliability targets reflect the needs of your business. As we said earlier, being too reliable has a cost—if your service is amazingly reliable but your users would be happy with two nines because its failure modes are acceptable, maybe that means you can take more risks and ship features faster. Not being reliable enough is often more costly: what if the only thing keeping your users with you is that your competitors reliability is even worse than yours—for now!
+- We call SLOs based on a business need "aspirational SLOs," because it's entirely reasonable for you to not be able to meet them initially. Over time, with some engineering effort, this is the level of reliability that your operations, development, product, and executive functions want to reach, that represents your best guesses at what level of reliability is right for your services, customers, and business over the long term.
+
+![image-20210627170316135](./images/image-20210627170316135.png)
+
+- But if you have or can derive historical data for your SLIs, we recommend that you look at this data and base your first SLOs on the past performance of your service. Starting from this point means you can be reasonably sure of your ability to meet the SLO over the short-to-medium term. If your users are happy enough with your service at the moment, you can be reasonably sure that this SLO is not set too low.
+- We call SLOs based on past performance "achievable SLOs”; since you should set the SLO threshold so that you can expect to meet it most of the time. Just remember that past performance does not indicate future reliability; the data you're basing your judgments on may not be representative of the long-term reliability achievable by your service.
+- The difference between these two targets is a useful signal. If the business needs better performance than your service is currently capable of achieving, that's a problem. But it's common for there to be some divergence when you're just setting out on your SLO journey.
+- What's needed is some way to drive convergence between the two targets over time. Aspirational SLOs are best guesses at what the business thinks makes the user happy, and achievable SLOs are making the assumption that current performance makes the user happy. To validate these assumptions, you need to find some external signals that indicate the happiness or discontent of your user base.
+- Understanding any discrepancies between these signals of user happiness and your SLOs, particularly instances where your users were sad but you were still in SLO, will help you refine your SLO targets. Significantly overperforming your SLO means that you have error budget to spend—maybe you could safely take more risks.
+  Significantly underperforming your SLO may mean that you're taking too many risks, or—if your users are happy—you should relax your SLO targets.
+- When you're just starting out, checking your SLOs against these signals more frequently is a good idea. You don't want to wait a whole year to find out that the first shot at setting reliability targets was way off! As you gain more confidence that your targets are in the right place, you can revisit them less frequently, but we recommend doing so at least once a year. A lot can happen in a year: your user base may grow dramatically, or your business might pivot to new markets with different requirements.
+
+![image-20210627170718366](./images/image-20210627170718366.png)
+
+- In general, people use your service to achieve some set of goals, so the SLIs for that service must measure the interactions they have with the service in pursuit of those goals.
+- An SLI specification is a formal statement of your users' expectations about one particular dimension of reliability for your service, like latency or availability. The SLI menu gives you guidelines for what dimensions of reliability you probably want to measure for a given user journey.
+- When you have SLIs specified for a system, the next step is to refine them into implementations by making decisions around measurement, validity, and how to classify events as “ good.”
+
+![image-20210627171733593](./images/image-20210627171733593.png)
+
+- To begin figuring out what SLIs we should have for this journey, we ask ourselves:
+  - What are the user's expectations for the reliability of this service?
+  - How can we measure the user's experience versus those expectations with our monitoring systems?
+  - How does the user interact with the service?
+
+The SLI menu we're showing you here is a good place to start if you're not sure what kind of SLIs you should measure for a particular user journey.
+
+![image-20210627172002065](./images/image-20210627172002065.png)
+
+![image-20210627172046857](./images/image-20210627172046857.png)
+
+![image-20210627172133910](./images/image-20210627172133910.png)
+
+
+
+## Developing and Alerting Strategy
+
+- An alert is an automated notification sent by Google Cloud through some notification channel to an external application, ticketing system, or person.
+- Why is the alert being sent? Perhaps a service is down, or an SLO isn't being met. Regardless, an alert is generated when something needs to change.
+
+![image-20210628001601592](./images/image-20210628001601592.png)
+
+![image-20210628001656997](./images/image-20210628001656997.png)
+
+![image-20210628001813614](./images/image-20210628001813614.png)
+
+- The events are processed through a time series: a series of event data points broken into successive, equally spaced windows of time. Based on need, each window's duration and the math applied to the member data points inside of each window are both configurable.
+  Because of the time series, events can be summarized, error rates can be calculated, and alerts can be triggered where appropriate.
+
+![image-20210628001928290](./images/image-20210628001928290.png)
+
+- Several attributes should be considered when attempting to measure the accuracy or effectiveness of a particular alerting strategy.
+- Precision is the proportion of alerts detected that were relevant to the sum of relevant and irrelevant alerts. It is decreased by false alerts.
+- Recall is the proportion of alerts detected that were relevant to the sum of relevant alerts and missed alerts. It is decreased by missing alerts.
+- Precision can be seen as a measure of exactness, whereas recall is a measure of completeness.
+- Detection time can be defined as how long it takes the system to notice an alert condition. Long detection times can negatively affect the error budget, but alerting too fast may generate false positives.
+- Reset time measures how long alerts fire after an issue has been resolved. Continued alerts on repaired systems can lead to confusion.
+
+![image-20210628002142607](./images/image-20210628002142607.png)
+
+![image-20210628002347778](./images/image-20210628002347778.png)
+
+- Longer windows tend to yield better precision, because they have longer to confirm that an error is really occurring, but reset and detection times are also longer. That means you spend more error budget before the alert triggers.
+
+![image-20210628002507422](./images/image-20210628002507422.png)
+
+![image-20210628002628452](./images/image-20210628002628452.png)
+
+- https://sre.google/workbook/alerting-on-slos/
+
+
+
+## Creating Alerts.
+

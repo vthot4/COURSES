@@ -5,6 +5,8 @@
 ## Summary
 
 - **Week 1.** [week1 Notes](./week1.md)
+  - LAB1. Develop SLIs and SLOs [LINK](./LAB1_Develop_SLI_and_SLOs.md)
+  - Alerting on SLO. [LINK](./Alerting_on_SLO.md)
 - **Week 2.**
 - **Week 3.**
 
@@ -16,3 +18,4 @@
 
 - cloud.google.com/stackdriver/docs
 - 
+

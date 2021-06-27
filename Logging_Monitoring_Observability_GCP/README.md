@@ -7,8 +7,8 @@
 - **Week 1.** [week1 Notes](./week1.md)
   - LAB1. Develop SLIs and SLOs [LINK](./LAB1_Develop_SLI_and_SLOs.md)
   - Alerting on SLO. [LINK](./Alerting_on_SLO.md)
-- **Week 2.** [LINK](./week2.md)
-- **Week 3.** [LINK](./week3.md)
+- **Week 2.** [week2 Notes](./week2.md)
+- **Week 3.** [week3 Notes](./week3.md)
 
 
 

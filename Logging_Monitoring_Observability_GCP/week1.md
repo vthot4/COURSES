@@ -315,3 +315,55 @@ Three key log categories are audit logs, agent logs, and network logs.
 
 ## Choosing a good SLI.
 
+![image-20210627162231367](./images/image-20210627162231367.png)
+
+- So, what properties of a metric make it good for use as an SLI? Let's assume we've trawled through our metrics and come up with these two candidates. If we had to choose between them, why would we say that the metric on the left is bad for use as an SLI, while the metric on the right is better?
+
+![image-20210627162346376](./images/image-20210627162346376.png)
+
+- While our "bad" metric does show an obvious downward slope during the outage period, there is a large amount of variance, and the expected range of values seen during normal operation—shown in blue on the left—has a lot of overlap with the expected range of values seen during an outage—in red on the right. This makes the metric a poor indicator of user happiness.
+
+![image-20210627162456076](./images/image-20210627162456076.png)
+
+- In contrast, our "good" metric has a noticeable dip that matches closely to the outage period. During normal operation, it has a narrow range of values that are quite different from the narrow range of values observed during an outage. The stability of the signal makes overall trends more visible and meaningful. This makes the metric a much better indicator of user happiness.
+
+![image-20210627162613335](./images/image-20210627162613335.png)
+
+- This matters because SLIs need to provide a clear definition of good and bad events, and a metric with lots of variance and poor correlation with user experience is much harder to set a meaningful threshold for. Because the "bad" metric has a large overlap in the range of values, our choices are to set a tight threshold and run the risk of false-positives, or to set a loose threshold and risk false-negatives. Worse, choosing the middle ground means accepting both risks. The "good" metric is much easier to set a threshold for because there is no overlap at all. The biggest risk we have to contend with is that perhaps the SLI doesn't recover as quickly as we might have hoped for after the outage ends.
+
+![image-20210627162822459](./images/image-20210627162822459.png)
+
+- Summing up: we want our SLIs to be things we can measure about our system that also correlate well with the happiness of our users.
+
+![image-20210627163007438](./images/image-20210627163007438.png)
+
+- Expressing all your SLIs in this form has a couple of useful properties. First, your SLIs fall between 0% and 100%, where 0% means nothing works and 100% means nothing is broken. This scale is intuitive and directly translates to percentage-reliability SLO targets and error budgets.
+- Second, your SLIs have a consistent format which can serve as an interface for abstraction. Consistency allows common tooling to be built around your SLIs. Alerting logic, error budget calculations, and SLO analysis and reporting tools can all be written to expect the same inputs: good events, valid events, and your SLO threshold.
+- But what do we mean by "valid," and why don't we use "all events" in the SLI equation? Sometimes you may need to exclude some events recorded by your underlying metrics from being included in your SLI, so they don't consume your error budget. A good example here might be ignoring 300 and 400 HTTP response codes as irrelevant to your service's SLO performance. This phrasing allows you to make this exclusion explicit and specific by declaring those events to be "invalid."
+
+
+
+## Specifying SLIs.
+
+- It may be tempting to rush off and start looking at which metrics might make good SLIs for your services, but we've got one more recommendation for you first.
+- In general, your users are using your service to achieve some set of goals, so your SLIs must measure their interactions with your service in the pursuit of these goals.
+- You should aim to have around 3-5 SLIs covering each user journey, even if your system and your user journeys are relatively complex. A service with too many SLIs places an additional cognitive burden on the people operating that service, especially if those SLIs start to contradict each other.
+- We're not recommending that you discard all your other monitoring and observability systems after you start measuring SLIs. The way we think about it is that a deterioration in your SLIs is an indication that something is wrong. When that problem has become bad enough to provoke some form of incident response, you'll need those other systems to debug and help you figure out what that is.
+
+
+
+- To begin figuring out what SLIs you should have for each journey, ask yourself:
+  - What are the user's expectations for the reliability of this service?
+  - How can we measure the user's experience versus those expectations with our monitoring systems?
+  - How does the user interact with the service?
+
+The SLI menu we're showing you here is a good place to start if you're not sure what kind of SLIs you should measure for a particular user journey. It's also on page 6 of your handout, so you can refer to it this afternoon.
+
+![image-20210627165220981](./images/image-20210627165220981.png)
+
+
+
+
+
+## Developing SLOs and SLIs.
+

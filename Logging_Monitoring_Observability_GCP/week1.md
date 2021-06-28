@@ -444,3 +444,46 @@ The SLI menu we're showing you here is a good place to start if you're not sure 
 
 ## Creating Alerts.
 
+- Google Cloud defines alerts using Alerting Policies. An alerting policy has:
+  - A name
+  - One or more alert conditions
+  - Notifications
+  - And documentation
+    For the name, use something descriptive so you can recognize alerts after the fact.
+    Organizational naming conventions can be a great help.
+
+![image-20210628124652177](./images/image-20210628124652177.png)
+
+
+
+![image-20210628124742823](./images/image-20210628124742823.png)
+
+![image-20210628124909318](./images/image-20210628124909318.png)
+
+![image-20210628124951174](./images/image-20210628124951174.png)
+
+![image-20210628125028995](./images/image-20210628125028995.png)
+
+- The Events pane of the Alerting dashboard displays the most recent events and includes a graphical indicator of the alert status, a link to event details, a quick description, and a timestamp.
+
+![image-20210628125828475](./images/image-20210628125828475.png)
+
+
+
+
+
+## Creating Alerting Policies with the CLI
+
+- Creating alerts from the CLI or the API starts with an alert policy definition in either a JSON or YAML format. One neat learning trick when learning the correct file format is to create an alert using the Google Cloud Console, use the gcloud monitoring policies list, and then describe commands to see the corresponding definition file.
+- The alerting API and gcloud can create, retrieve, and delete alerting policies.
+- As an example, to create an alerting policy in gcloud, define it using JSON syntax and save to a file.
+- Then run: gcloud alpha monitoring policies create --policy-from-file="filename.json"
+
+![image-20210628130321247](./images/image-20210628130321247.png)
+
+![image-20210628130407615](./images/image-20210628130407615.png)
+
+![image-20210628130512385](./images/image-20210628130512385.png)
+
+![image-20210628130603998](./images/image-20210628130603998.png)
+

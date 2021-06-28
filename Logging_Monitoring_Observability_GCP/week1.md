@@ -487,3 +487,32 @@ The SLI menu we're showing you here is a good place to start if you're not sure 
 
 ![image-20210628130603998](./images/image-20210628130603998.png)
 
+
+
+## Service Monitoring.
+
+![image-20210628192159146](./images/image-20210628192159146.png)
+
+- Modern applications are composed of multiple services, and when something fails, it often seems that many things fail at once. To help manage this complexity, Service Monitoring helps with SLO and Alert creation.
+- Accessible through the Google Cloud Console and via an API, Service Monitoring supports latency- and availability-based SLI metrics.
+- SLO performance goals can be specified and, when combined with compliance periods, automated alerting is easily configurable.
+- Service Monitoring also calculates and reports error budgets to help with change planning.
+
+![image-20210628192540599](./images/image-20210628192540599.png)
+
+- The Service Monitoring consolidated services overview page is your point of entry. Near the top of the page, a summary of your alerts and SLOs is displayed.
+
+![image-20210628192636975](./images/image-20210628192636975.png)
+
+![image-20210628192718447](./images/image-20210628192718447.png)
+
+![image-20210628192751500](./images/image-20210628192751500.png)
+
+- SLOs and error budgets are measured over a period of compliance; that is, a period over which the SLI performance is tracked. There are two fundamental types of compliance periods:
+  - Calendar-based periods run from a fixed date to a fixed date. Perhaps you bill customers on the first of the month, so you track SLOs and error budgets from the 1st of the month to the 1st of the next month.
+  - Rolling window–based periods measure across a constantly moving window of time. Perhaps we always want to be in compliance over a rolling window containing the last seven days of data.
+
+![image-20210628192910691](./images/image-20210628192910691.png)
+
+![image-20210628192959720](./images/image-20210628192959720.png)
+

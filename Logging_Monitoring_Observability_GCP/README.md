@@ -21,6 +21,10 @@
 
 - **Week 2.** [week2 Notes](./week2.md)
 
+  **LABS**
+
+  - LAB4. Monitoring and Dashboarding Multiple Projects from a Single Workspace [LINK](./LAB4_Monitoring_and_Dashboarding_Multiple_Projects.md)
+
 - **Week 3.** [week3 Notes](./week3.md)
 
 

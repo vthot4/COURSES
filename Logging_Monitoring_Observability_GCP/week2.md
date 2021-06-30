@@ -253,3 +253,15 @@
 ![image-20210630162736167](./images/image-20210630162736167.png)
 
 ![image-20210630162823041](./images/image-20210630162823041.png)
+
+![image-20210630163623374](./images/image-20210630163623374.png)
+
+![image-20210630163719034](./images/image-20210630163719034.png)
+
+- One of the most common needs regarding logs is centralizing logging data in a single location for auditing, retention, and non-repudiation purposes. There are three available Google Cloud Logging aggregation levels.
+  1. The first is a project-level log sink, which we've discussed. This option exports all the logs for a specific project and a log filter can be specified in the sink definition to include/exclude certain log types.
+  2. A folder-level log sink aggregates logs on the folder level and can include logs from child resources (subfolders, projects).
+  3. And for a global view, an organization-level log sink can aggregate logs on the organization level and can also include logs from child resources (subfolders, projects).
+
+![image-20210630163910133](./images/image-20210630163910133.png)
+

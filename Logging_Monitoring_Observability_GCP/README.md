@@ -10,9 +10,9 @@
 
   **LABS**
 
-  - LAB1. Develop SLIs and SLOs [LINK](./LAB1_Develop_SLI_and_SLOs.md)
-  - LAB2. Alerting in Google Cloud [LINK](./LAB2_Alerting_in_Google_Cloud.md)
-  - LAB3. Service Monitoring [LINK](./LAB3_Service_Monitoring.md)
+  - LAB 1. Develop SLIs and SLOs [LINK](./LAB1_Develop_SLI_and_SLOs.md)
+  - LAB 2. Alerting in Google Cloud [LINK](./LAB2_Alerting_in_Google_Cloud.md)
+  - LAB 3. Service Monitoring [LINK](./LAB3_Service_Monitoring.md)
 
   **MORE**
 
@@ -23,11 +23,15 @@
 
   **LABS**
 
-  - LAB4. Monitoring and Dashboarding Multiple Projects from a Single Workspace [LINK](./LAB4_Monitoring_and_Dashboarding_Multiple_Projects.md)
-  - LAB5. Compute Logging and Monitorin. [LINK](./LAB5_Compute_Logging_and_Monitoring.md)
+  - LAB 4. Monitoring and Dashboarding Multiple Projects from a Single Workspace [LINK](./LAB4_Monitoring_and_Dashboarding_Multiple_Projects.md)
+  - LAB 5. Compute Logging and Monitorin. [LINK](./LAB5_Compute_Logging_and_Monitoring.md)
   - LAB 6.  Log Analysis. [LINK](./LAB6_Log_Analysis.md)
 
 - **Week 3.** [week3 Notes](./week3.md)
+
+  **LABS**
+
+  - LAB 7. Cloud Audit Logs. [LINK](./LAB7_Cloud_Audit_Logs.md)
 
 
 

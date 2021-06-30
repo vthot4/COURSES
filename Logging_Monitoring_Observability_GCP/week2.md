@@ -119,3 +119,137 @@
 
 ![image-20210630011734785](./images/image-20210630011734785.png)
 
+
+
+## Monitoring
+
+- As we've discussed, monitoring data can originate at a number of different sources. With Google Compute Engine instances, since the VMs are running on Google hardware, Monitoring can access some instance metrics without the Monitoring agent, including CPU utilization, some disk traffic metrics, network traffic, and uptime information, but that information can be augmented by installing agents into the VM operating system.
+- These agents are required because for security reasons, the hypervisor cannot access some of the internal metrics inside a VM, for example, memory usage. GKE clusters also send system metrics via an agent.
+
+![image-20210630105947881](./images/image-20210630105947881.png)
+
+- The Cloud Monitoring agent is a collectd-based open-source daemon that gathers system and application metrics from virtual machine instances and sends them to Monitoring.
+- By default, the optional but recommended Monitoring agent collects disk, CPU, network, and process metrics.
+- You can configure the Monitoring agent to monitor third-party applications like Apache, mySQL, and NGINX.
+- Additional support provided through integration through BindPlane from Blue Medora.
+- The Monitoring agent supports most major operating systems from CentOS, to Ubuntu, to Windows.
+
+![image-20210630110107417](./images/image-20210630110107417.png)
+
+![image-20210630110156796](./images/image-20210630110156796.png)
+
+![image-20210630110242294](./images/image-20210630110242294.png)
+
+![image-20210630110324810](./images/image-20210630110324810.png)
+
+
+
+## Logging
+
+- By default, Google has little visibility into the logs that are created at the operating system level of your VM. If you need access to something like the Windows Event log, or the Linux syslog, you need to install the Google Logging agent.
+- Like the earlier discussed Monitoring agent, the Logging agent can stream logs from common third-party applications and system software to Google Cloud Logging.
+- It supports a number of third third-party applications, including: Apache, Nginx, and Jenkins, just to name a few.
+- Based on the open-source fluentd log data collector, it supports standard fluentd configuration files and options.
+
+![image-20210630110844535](./images/image-20210630110844535.png)
+
+- When collecting logging for any of the following non-virtual machine systems in Google Cloud, the Logging agent is not required, and you should not try and install it:
+  - App Engine standard and flex have logging support integrated, though there are extra logging options with flex.
+  - With Standard Google Kubernetes Engine nodes (VMs), Logging and Monitoring is an option which is enabled by default.
+  - Currently, the Anthos GKE On-Premises agent collects system but not application metrics.
+  - Cloud Run includes integrated logging support.
+  - Cloud Functions, both HTTP and background functions, include built-in support for logging.
+
+![image-20210630111014701](./images/image-20210630111014701.png)
+
+![image-20210630111045669](./images/image-20210630111045669.png)
+
+![image-20210630111116531](./images/image-20210630111116531.png)
+
+
+
+## Baking an image
+
+- Some organizations are still in the habit of creating hand-crafted servers, and they have no existing support or process built around the idea of image automation.
+- Many organizations have some version of the second option. They have a set of images that they built manually or with partial automation, perhaps for particular workloads. They don't get built or updated often.
+- The goal is that organizations treat their image creation process as a standard DevOps pipeline. Commits to a codebase trigger build jobs, which create/test/deploy images with all requisite software and applications built-in, including the Logging and Monitoring agents.
+
+![image-20210630111614589](./images/image-20210630111614589.png)
+
+![image-20210630111646148](./images/image-20210630111646148.png)
+
+
+
+## Non-VM Resources.
+
+- As already mentioned in a previous lesson, Google's App Engine standard and flex both support monitoring. Make sure to check Google's documentation for the metric details.
+- App Engine also supports logging by writing to standard out or standard error. For more refined logging capabilities, check out the language-specific logging APIs, such as Winston for Node.js.
+- App Engine logs are viewable under the GAE Application resource.
+
+
+
+- Google Kubernetes Engine supports several monitoring and logging configurations.
+  - GKE logging and monitoring integration can be disabled completely, though this will have an impact on Google's ability to support your cluster should problems arise.
+  - System and workload monitoring and logging can be enabled; this is currently the default, and Google's recommended best practice.
+  - In beta at the time of this writing, System logging and monitoring only (no workload) is an option. Logging data and monitoring metrics can incur spend. This option might lessen the cost by only capturing the system events. Think, "Someone created a service" (system) vs. "someone just visited the NGINX container in this pod" (workload).
+
+![image-20210630112216032](./images/image-20210630112216032.png)
+
+![image-20210630112254083](./images/image-20210630112254083.png)
+
+
+
+- Cloud Functions are lightweight, purpose-built functions, typically invoked in response to an event. For example, you might upload a PDF file to a Cloud Storage bucket, the new file triggers an event which invokes a Cloud Function, which translates the PDF from English to Spanish.
+- Cloud Functions monitoring is automatic and can provide you access to invocations, execution times, memory usage, and active instances in the Cloud Console. These metrics are also available in Cloud Monitoring, where you can set up custom alerting and dashboards for these metrics.
+- Cloud Functions also support simple logging by default. Logs written to standard out or standard error will appear automatically in the Cloud Console. The logging API can also be used to extend log support.
+
+
+
+- Cloud Run is Google’s container service. It can run in a fully managed version, in which it acts as a sort of App Engine for containers, and it can also run on GKE, in which case it’s a managed version of the open-source KNative. Cloud Run is automatically integrated with Cloud Monitoring with no setup or configuration required. This means that metrics of your Cloud Run services are captured automatically when they are running.
+- You can view metrics either in Cloud Monitoring or on the Cloud Run page in the console. Cloud Monitoring provides more charting and filtering options.
+- The resource type differs for fully managed Cloud Run and Cloud Run for Anthos:
+  - For fully managed Cloud Run, the monitoring resource name is "Cloud Run Revision" (cloud_run_revision).
+  - For Cloud Run for Anthos, the monitoring resource name is "Cloud Run on GKE Revision" (knative_revision).
+  
+- Cloud Run has two types of logs which it automatically sends to Cloud Logging:
+  - Request logs: logs of requests sent to Cloud Run services.
+  - And Container logs: logs emitted from the container instances from your own code, written to standard out or standard error streams, or using the logging API.
+
+
+
+## Exposing Custom Metrics.
+
+- Application-specific metrics, also known as user or custom metrics, are metrics that you define and collect to capture information the built-in Cloud Monitoring metrics cannot. You capture such metrics by using an API provided by a library to instrument your code, and then you send the metrics to Cloud Monitoring.
+- Custom metrics can be used in the same way as built-in metrics. That is, you can create charts and alerts for your custom metric data.
+- There are two fundamental approaches to creating custom metrics for Cloud Monitoring:
+  - You can use the classic Cloud Monitoring API.
+  - Or you can use the OpenCensus open-source monitoring and tracing library.
+
+![image-20210630113444010](./images/image-20210630113444010.png)
+
+![image-20210630113555941](./images/image-20210630113555941.png)
+
+![image-20210630113647688](./images/image-20210630113647688.png)
+
+![image-20210630113728961](./images/image-20210630113728961.png)
+
+![image-20210630113756021](./images/image-20210630113756021.png)
+
+
+
+## Exporting and Analyzing Logs.
+
+![image-20210630132907512](./images/image-20210630132907512.png)
+
+- Logs buckets are containers in your Google Cloud projects that hold your logs data. You can create logs sinks to route all, or just a subset, of your logs to any logs bucket. This flexibility allows you to choose which Google Cloud project your logs are stored in and what other logs are stored with them. Log buckets may also be placed in specific regions for regulatory compliance. Using the gcloud command-line tool and the Google Cloud Console, you can create, update, and delete your custom logs buckets.
+
+- The top of the Logs Storage page displays a summary of statistics for the logs that your project is receiving, including:
+  - Current total volume: The amount of logs your project has received since the first date of the current month.
+  - Previous month volume: The amount of logs your project received in the last calendar month.
+  - Projected volume by EOM: The estimated amount of logs your project will receive by the end of the current month, based on current usage.
+
+![image-20210630133248378](./images/image-20210630133248378.png)
+
+![image-20210630162736167](./images/image-20210630162736167.png)
+
+![image-20210630162823041](./images/image-20210630162823041.png)

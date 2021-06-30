@@ -24,6 +24,7 @@
   **LABS**
 
   - LAB4. Monitoring and Dashboarding Multiple Projects from a Single Workspace [LINK](./LAB4_Monitoring_and_Dashboarding_Multiple_Projects.md)
+  - LAB5. Compute Logging and Monitorin. [LINK](./LAB5_Compute_Logging_and_Monitoring.md)
 
 - **Week 3.** [week3 Notes](./week3.md)
 

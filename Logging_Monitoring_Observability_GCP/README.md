@@ -32,6 +32,7 @@
   **LABS**
 
   - LAB 7. Cloud Audit Logs. [LINK](./LAB7_Cloud_Audit_Logs.md)
+  - LAB 8. Application Performance Management. [LINK](./LAB8_Application_Performance_Management.md)
 
 
 

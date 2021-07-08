@@ -202,3 +202,64 @@
 
 ![image-20210701013150025](./images/image-20210701013150025.png)
 
+
+
+## Incident Management.
+
+- An alert indicates that something bad is happening, or is on track to happen. As we've discussed in this course, "something bad" is a generic way of saying that one of our Service Level Objectives is being violated, or might be on track to be violated if things are left as they are. An alert doesn't mean your client is yelling at you; in fact, in an ideal world, they may not have noticed anything, yet.
+- An incident is the declared start of an Incident response process, and that’s all about what you do next. If you declare an ankle incident then you might have to go easy, perhaps put ice on it for awhile, or you might need to go to the emergency room. With software systems you need to answer the question, does this alert (pain) trigger a response, or is it a simple anomaly?
+  In other words, can I safely ignore it or do I need to start some form of incident response (for example does it need a doctor)? Who is it that makes that decision? Does the client need to be informed? How about the boss? Does someone need to roll out of bed, or can it wait? All of this should be part of your standard incident response methodology, and this should all kicks in when an incident is declared.
+
+
+
+![image-20210707103733568](./images/image-20210707103733568.png)
+
+- Start in the lower left. Things are going along fine when bang! Alerts start firing. This moves you into the first major incident state: Detected. Something untoward is happening, but that's all you know.
+- Triage is started. How bad is it? What's happening? And someone needs to make a decision: is this an incident or a simple anomaly. That takes you to the next incident stage: Triaged. Let's say that triage decides that this is something that has to be dealt with, so an incident is declared, and an initial severity is set.
+- You and your team are working on the problem. The longer it goes on, the worse it gets. Your goal here is to make things better and, if possible, to fix the problem.
+- When the patch is in place, your incident moves into the next stage, Mitigated. At worst, you've lessened the problem. At best, the client is no longer being impacted.
+- Now you do your root cause analysis. Why did this happen? How can you make sure it never happens again. Once you can answer those questions, your incident moves into its final phase: Resolved.
+- You write up your post mortem documentation, so everyone knows what happened, why, and what we've done to make sure it doesn't happen again. You submit it and move on.
+
+
+
+- The time to decide how to handle an incident is not when it's happening. You, and your organization, need to develop a structured incident response methodology. You want to build an SRE culture:
+  - On collaboration and clear communication.
+  - Which learns and shares that knowledge.
+  - With a predefined, and organized information flow
+  - And, with a clearly organized approach to client notification.
+
+- Once your SRE foundations are in place, then it's time to practice. That way, you can be prepared and respond quickly, because you'll have the checklists, and you know what to do when.
+- As you and your team train, you'll also learn to be consistent. Like the pilots, you want to reduce duplication of effort and know who's doing what.
+
+![image-20210708181136139](./images/image-20210708181136139.png)
+
+![image-20210708181353048](./images/image-20210708181353048.png)
+
+- The **Incident Commander (IC)** is at the top of the team chain of command, and during an incident, every member of the response team reports to the Incident Commander. The IC's role isn't to personally fix the problem, but to make sure the problem gets fixed. Think management and organization, not technical wizardry.
+- IC responsibilities include building and maintaining the team, coordinating the parts of the response, deciding priorities, and delegating activities. It's the IC that always knows the current status of significant events during the incident, and the IC will also handle communication if a communication lead is not assigned.
+- Next, we have the **Communications Lead (CL).** The Communications Lead is responsible for clear, timely communication. The CL keeps everyone outside the response team informed, and it's the CL that fields questions, and who decides what should be released and through which communication channels. So the CL faces the outside world and lets the team work in peace. Direct communication between the client and other team members should be actively discouraged.
+- The **Operations Lead (OL)** manages the immediate, detailed, technical, and tactical work of the incident response. The OL develops and executes the incident action plan, requests additional resources as needed, allocates resources among the various operational response, and maintains close contact with the Incident Commander, Communications Lead, Primary and Secondary Responders, and others involved with handling the incident.
+- The **Operations Lead leads**, and works closely with, the responders.
+- The **Primary Responder** executes the operation lead's technical response plan, and maintains close contact with the Operations Lead and, if there is one assigned, uses the Secondary Responder for additional technical support.
+- The **Secondary Responder** role assists the Primary Responder if they need help on the particular incident.
+
+
+
+- Best practices before the incident:
+
+  - Establish clear criteria for declaring an incident and remember, err on the side of caution. Better false incidents, than missed.
+  - Choose a communications channel in advance and make sure SRE members and clients know the plan.
+  - Create templates for communications. Templates are easy to fill in, save time, and help avoid missing information.
+  - Train. Train. Train. Train the team on how to respond in theory, and then drill them to make sure they know how to practice what they've learned. Drilling also helps avoid panic.
+
+  
+
+- A postmortem report is a detailed and organized document outlining the key events of the incident. It's a blameless report containing the impact, root cause, triggering event, the resolution, any quantifiable metrics, action items, lessons learned, and a timeline.
+
+![image-20210709010637690](./images/image-20210709010637690.png)
+
+- Postmortems are letters to your future self and team. They help with future troubleshooting and provide starting points and clarity on future mitigations.
+
+![image-20210709010848128](./images/image-20210709010848128.png)
+

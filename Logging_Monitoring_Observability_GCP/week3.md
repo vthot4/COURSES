@@ -263,3 +263,41 @@
 
 ![image-20210709010848128](./images/image-20210709010848128.png)
 
+## The cost of monitoring.
+
+At the time of this writing, there are a number of parts of the Google operations suite that are free, including
+
+- Debugging and using the Profiler
+- Collecting and using the Cloud Audit and Transparency logs
+- BigQuery Data Access logs
+- Anything (excluded from logs)
+- Exporting, noting what you export to may incur spend
+- Creating and using dashboards
+- The metrics themselves
+- Anthos metrics and log streams
+- App Engine standard trace spans
+- And Uptime checks
+
+
+
+Other parts of the operations suite have a free tier to get you started. Examples include:
+
+- The first 50Gib of logging per project
+- The first 150MiB of monitoring data per billing account
+- The first million monitoring API calls per project
+- The first 2.5 million trace spans ingested per project
+- The first 25 million trace spans scanned per project
+
+![image-20210709180408441](./images/image-20210709180408441.png)
+
+![image-20210709180453273](./images/image-20210709180453273.png)
+
+
+
+Start by going to your billing account reports page. Set your date range and then filter by SKU. The SKUs you want are:
+
+- Log Volume
+- Spans Ingested
+- Metric Volume
+- Monitoring API Requests
+
